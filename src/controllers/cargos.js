@@ -12,10 +12,10 @@ exports.fetchAll = (req, res, next) => {
 exports.create = (req, res, next) => {
   const { nome } = req.body;
   
-  Cargo.create({ nome })
+  Cargo.create({ nome: nome })
     .then(() => res.status(201).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "Couldn't add new cargo." })
+      res.status(500).json({ error: "Couldn't add new cargo.", nome })
     });
 }
