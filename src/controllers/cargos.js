@@ -12,7 +12,7 @@ exports.fetchAll = (req, res, next) => {
 exports.createOne = (req, res, next) => {
   const { nome } = req.body;
   
-  Cargo.create({ nome: "Desenvolvedor Fullstack" })
+  Cargo.create({ nome })
     .then(() => res.status(201).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);

@@ -26,7 +26,7 @@ exports.fetchSingleEmployee = (req, res, next) => {
 }
 
 exports.fetchEmployeesByFilter = (req, res, next) => {
-  const { cargoId, filtroIdade, nome } = req.params;
+  const { cargoId, filtroIdade, nome } = req.query;
 
   if (!cargoId && !filtroIdade && !nome) {
     return res.status(400).json({ error: "No filters applied!" });
@@ -68,11 +68,13 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
 exports.addEmployee = (req, res, next) => {
   const { nome, idade, cargoId } = req.body;
 
-  Funcionario.create({ nome: "Artur Freire", idade: 19, cargoId: 6 })
+  Funcionario.create({ nome, idade, cargoId })
     .then(() => res.status(200).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "Couldn't add employee" });
+      res.status(500).json({
+         error: `Couldn't add employee. nome: ${nome}; idade: ${idade}; cargoId: ${cargoId}` 
+      });
     });
 }
 
