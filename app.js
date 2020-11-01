@@ -15,5 +15,9 @@ app.use('/', routes);
 
 Cargo.hasMany(Funcionario);
 
-sequelize.sync({ force: true })
-  .then(() => app.listen(process.env.PORT || 8080));
+sequelize.sync()
+  .then(() => app.listen(process.env.PORT || 8080))
+  .catch(err => {
+    console.log(err)
+    return -1;
+  });
