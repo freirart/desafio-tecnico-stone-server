@@ -17,7 +17,9 @@
   "author": "Artur Freire dos Santos",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.4.2",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

@@ -7,4 +7,4 @@ app.get('/', (req, res, next) => {
   res.json({message: 'Hello, world!'});
 });
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
