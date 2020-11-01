@@ -1,0 +1,24 @@
+{
+  "name": "employees-server",
+  "version": "1.0.0",
+  "description": "Desafio Técnico da STONE",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "node",
+    "crud",
+    "javascript",
+    "js"
+  ],
+  "author": "Artur Freire dos Santos",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
