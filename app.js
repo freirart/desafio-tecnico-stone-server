@@ -1,15 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const app = express();
+
 const sequelize = require('./src/utils/database');
 const routes = require('./src/routes/routes');
 
 const Cargo = require('./src/models/cargo');
 const Funcionario = require('./src/models/funcionario');
 
-const app = express();
-
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use('/', routes);
 
