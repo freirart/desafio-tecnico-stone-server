@@ -13,7 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
 
-Cargo.hasMany(Funcionario);
+Cargo.hasMany(Funcionario, {
+  foreignKey: {
+    name: 'cargoId',
+    allowNull: false
+  }
+});
 
 sequelize.sync()
   .then(() => app.listen(process.env.PORT || 8080))

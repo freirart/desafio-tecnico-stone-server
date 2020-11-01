@@ -68,7 +68,7 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
 exports.addEmployee = (req, res, next) => {
   const { nome, idade, cargoId } = req.body;
 
-  Funcionario.create({ nome, idade, cargoId })
+  Funcionario.create({ nome: "Artur Freire", idade: 19, cargoId: 6 })
     .then(() => res.status(200).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
