@@ -10,7 +10,7 @@ router.get('/employee/:employeeId', funcControllers.fetchSingleEmployee);
 router.get('/employee/filter/:cargoId-:filtroIdade-:nome', funcControllers.fetchEmployeesByFilter);
 router.get('/cargos', cargoControllers.fetchAll);
 
-router.post('/cargos', cargoControllers.create);
+router.post('/cargos', cargoControllers.createOne);
 
 // as funcoes abaixo DEVEM gerar logs.
 router.post('/employee', funcControllers.addEmployee);
