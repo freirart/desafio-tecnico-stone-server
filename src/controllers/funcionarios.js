@@ -32,7 +32,7 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
     return res.status(400).json({ error: "No filters applied!" });
   }
 
-  let whereFilter;
+  let whereFilter = {};
 
   function getIdadeFilterByOption(option) {
     let retorno;
@@ -72,9 +72,7 @@ exports.addEmployee = (req, res, next) => {
     .then(() => res.status(200).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({
-         error: `Couldn't add employee. nome: ${nome}; idade: ${idade}; cargoId: ${cargoId}` 
-      });
+      res.status(500).json({ error: "Couldn't add employee." });
     });
 }
 

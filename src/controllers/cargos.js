@@ -16,6 +16,6 @@ exports.createOne = (req, res, next) => {
     .then(() => res.status(201).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: `Couldn't add new cargo. (${nome})` })
+      res.status(500).json({ error: "Couldn't add new cargo." })
     });
 }
