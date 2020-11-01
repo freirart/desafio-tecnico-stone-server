@@ -11,7 +11,6 @@ const Cargo = sequelize.define('cargo', {
   },
   nome: {
     type: Sequelize.STRING,
-    allowNull: false,
   },
 });
 
