@@ -1,27 +1,19 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const sequelize = require('./src/utils/database');
+const routes = require('./src/routes/routes');
+
+const Cargo = require('./src/models/cargo');
+const Funcionario = require('./src/models/funcionario');
 
 const app = express();
 
-let connectionResult;
+app.use(bodyParser.urlencoded({ extended: true }));
 
-async function connect() {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-    connectionResult = true;
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    connectionResult = false;
-  }
-}
+app.use('/', routes);
 
-connect();
+Cargo.hasMany(Funcionario);
 
-app.get('/', (req, res, next) => {
-  console.log("Server Running!");
-  res.json({ message: 'Hello, world!', bdConnection: connectionResult });
-});
-
-app.listen(process.env.PORT || 8080);
+sequelize.sync({ force: true })
+  .then(() => app.listen(process.env.PORT || 8080));
