@@ -8,3 +8,14 @@ exports.fetchAll = (req, res, next) => {
       res.status(500).json({ error: "Couldn't bring data." });
     });
 }
+
+exports.create = (req, res, next) => {
+  const { nome } = req.body;
+  
+  Cargo.create({ nome })
+    .then(() => res.status(201).json({ message: 'Success!' }))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Couldn't add new cargo." })
+    });
+}

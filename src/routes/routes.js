@@ -7,8 +7,10 @@ const cargoControllers = require('../controllers/cargos.js');
 
 router.get('/employee/page/:pageNumber', funcControllers.fetchEmployees);
 router.get('/employee/:employeeId', funcControllers.fetchSingleEmployee);
-router.get('/cargos', cargoControllers.fetchAll);
 router.get('/employee/filter/:cargoId-:filtroIdade-:nome', funcControllers.fetchEmployeesByFilter);
+router.get('/cargos', cargoControllers.fetchAll);
+
+router.post('/cargos', cargoControllers.create);
 
 // as funcoes abaixo DEVEM gerar logs.
 router.post('/employee', funcControllers.addEmployee);
