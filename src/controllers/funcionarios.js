@@ -37,16 +37,16 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
   function getIdadeFilterByOption(option) {
     let retorno;
     switch(option) {
-      case 1:
+      case '1':
         retorno = { [Op.lt]: 20 };
         break;
-      case 2:
+      case '2':
         retorno = { [Op.between]: [20, 30] };
         break;
-      case 3:
+      case '3':
         retorno = { [Op.between]: [31, 40] };
         break;
-      case 4:
+      case '4':
         retorno = { [Op.gt]: 40 }
         break;
     }
