@@ -8,7 +8,7 @@ const path = require('path');
 expressWinston.requestWhitelist.push('body');
 expressWinston.responseWhitelist.push('body');
 
-const database = process.env.MONGODB_URL || process.env.MONGODB;
+const db = process.env.MONGODB_URL || process.env.MONGODB;
 
 const myLogger = expressWinston.logger({
   format: combine(
@@ -25,7 +25,7 @@ const myLogger = expressWinston.logger({
       maxFiles: 10,
     }),
     new transports.MongoDB({
-      db: process.env.MONGODB,
+      db,
       collection: 'logger',
       options: { useUnifiedTopology: true },
       level: 'debug',
