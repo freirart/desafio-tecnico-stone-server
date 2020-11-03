@@ -26,8 +26,9 @@ const myLogger = expressWinston.logger({
     }),
     new transports.MongoDB({
       db,
-      collection: 'logger',
+      collection: 'logdb',
       level: 'debug',
+      format: combine(timestamp(), json())
     }),
   ],
   colorize: false,
