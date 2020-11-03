@@ -27,7 +27,6 @@ const myLogger = expressWinston.logger({
     new transports.MongoDB({
       db,
       collection: 'logger',
-      options: { useUnifiedTopology: true },
       level: 'debug',
     }),
   ],
