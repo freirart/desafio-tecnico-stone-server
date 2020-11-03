@@ -6,8 +6,12 @@ exports.fetchEmployees = (req, res, next) => {
   const limit = 20;
   const offset = pageNumber * limit;
 
-  Funcionario.findAll({ limit, offset })
-    .then(funcList => res.status(200).json(funcList))
+  Funcionario.findAll({
+     attributes: ['id', 'nome', 'cargoId', 'idade'],
+     limit,
+     offset 
+    })
+    .then(listaFuncionarios => res.status(200).json({ listaFuncionarios }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." });
@@ -18,7 +22,7 @@ exports.fetchSingleEmployee = (req, res, next) => {
   const { employeeId } = req.params;
 
   Funcionario.findByPk(employeeId)
-    .then(funcionario => res.json(funcionario))
+    .then(funcionario => res.json({ funcionario }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." });
@@ -57,8 +61,11 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
   if (filtroIdade) whereFilter.idade = getIdadeFilterByOption(filtroIdade);
   if (nome) whereFilter.nome = { [Op.iLike]: `${nome}%` };
 
-  Funcionario.findAll({ where: whereFilter })
-    .then(funcionarios => res.status(200).json(funcionarios))
+  Funcionario.findAll({
+     attributes: ['id', 'nome', 'cargoId', 'idade'],
+     where: whereFilter
+   })
+    .then(funcionarios => res.status(200).json({ funcionarios }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." })
