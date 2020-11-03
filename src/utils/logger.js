@@ -1,5 +1,5 @@
 const { format, transports } = require('winston');
-const { combine, json, timestamp, colorize } = format;
+const {  timestamp, json, combine, metadata } = format;
 const expressWinston = require('express-winston');
 require('winston-mongodb');
 
@@ -11,11 +11,7 @@ expressWinston.responseWhitelist.push('body');
 const db = process.env.MONGODB_URL || process.env.MONGODB;
 
 const myLogger = expressWinston.logger({
-  format: combine(
-    json(),
-    colorize(),
-    timestamp(),
-  ),
+  format: combine(timestamp(), json()),
   transports: [
     new transports.Console({level: 'info'}),
     new transports.File({
@@ -24,14 +20,14 @@ const myLogger = expressWinston.logger({
       maxsize: 5242880,
       maxFiles: 10,
     }),
-    new transports.MongoDB({
-      db,
-      collection: 'logdb',
-      level: 'debug',
-      format: combine(timestamp(), json())
-    }),
+    // new transports.MongoDB({
+    //   db,
+    //   collection: 'logdb',
+    //   level: 'debug',
+    //   tryReconnect: true,
+    //   options: { useUnifiedTopology: true },
+    // }),
   ],
-  colorize: false,
 });
 
 module.exports = myLogger;
