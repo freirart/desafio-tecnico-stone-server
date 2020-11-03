@@ -1,5 +1,5 @@
 const { format, transports } = require('winston');
-const {  timestamp, json, combine, metadata } = format;
+const {  timestamp, json, combine, colorize } = format;
 const expressWinston = require('express-winston');
 require('winston-mongodb');
 
@@ -10,7 +10,7 @@ expressWinston.responseWhitelist.push('body');
 
 const db = process.env.MONGODB_URL || process.env.MONGODB;
 
-const myLogger = expressWinston.logger({
+const defaultLogger = expressWinston.logger({
   format: combine(timestamp(), json()),
   transports: [
     new transports.Console({level: 'info'}),
@@ -30,5 +30,5 @@ const myLogger = expressWinston.logger({
   ],
 });
 
-module.exports = myLogger;
+module.exports = defaultLogger;
 
