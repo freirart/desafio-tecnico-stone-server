@@ -11,8 +11,6 @@ router.get('/employee', funcControllers.fetchEmployeesByFilter);
 router.get('/cargos', cargoControllers.fetchAll);
 
 router.post('/cargos', cargoControllers.createOne);
-
-// as funcoes abaixo DEVEM gerar logs.
 router.post('/employee', funcControllers.addEmployee);
 router.put('/employee/edit/:employeeId', funcControllers.updateEmployee);
 router.delete('/employee/delete/:employeeId', funcControllers.deleteEmployee);
