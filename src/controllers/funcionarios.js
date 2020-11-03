@@ -1,5 +1,6 @@
 const Funcionario = require('../models/funcionario');
 const { Op } = require('sequelize');
+const logger = require('../utils/logger');
 
 exports.fetchEmployees = (req, res, next) => {
   const { pageNumber } = req.params;
@@ -13,7 +14,7 @@ exports.fetchEmployees = (req, res, next) => {
     })
     .then(listaFuncionarios => res.status(200).json({ listaFuncionarios }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "Couldn't bring any data." });
     });
 }
@@ -24,7 +25,7 @@ exports.fetchSingleEmployee = (req, res, next) => {
   Funcionario.findByPk(employeeId)
     .then(funcionario => res.json({ funcionario }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "Couldn't bring any data." });
     });
 }
@@ -67,7 +68,7 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
    })
     .then(funcionarios => res.status(200).json({ funcionarios }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "Couldn't bring any data." })
     });
 }
@@ -78,7 +79,7 @@ exports.addEmployee = (req, res, next) => {
   Funcionario.create({ nome, idade, cargoId })
     .then(() => res.status(200).json({ message: 'Success!' }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "Couldn't add employee." });
     });
 }
@@ -95,7 +96,7 @@ exports.updateEmployee = (req, res, next) => {
     })
     .then(() => res.status(201).json({ message: 'Success! Employee info updated.' }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "PUT request failed." });
     });
 }
@@ -107,7 +108,7 @@ exports.deleteEmployee = (req, res, next) => {
     .then(funcionario => funcionario.destroy())
     .then(() => res.status(201).json({ message: 'Success! Employee removed from database.' }))
     .catch(err => {
-      console.log(err);
+      logger.error(err);
       res.status(500).json({ error: "DELETE request failed." });
     });
 }

@@ -4,7 +4,8 @@ require('dotenv').config();
 const http = require('http');
 
 const sequelize = require('./src/utils/database');
-const routes = require('./src/routes/routes');
+const rotasFuncionarios = require('./src/routes/funcionarios');
+const rotasCargos = require('./src/routes/cargos');
 const myLogger = require('./src/utils/logger');
 
 const Cargo = require('./src/models/cargo');
@@ -17,7 +18,8 @@ app.use(bodyParser.json());
 
 app.use(myLogger);
 
-app.use('/', routes);
+app.use('/cargos', rotasCargos);
+app.use('/employee', rotasFuncionarios);
 
 app.use((req, res, next) => res.status(404).json({ error: "This route does not exist." }));
 
