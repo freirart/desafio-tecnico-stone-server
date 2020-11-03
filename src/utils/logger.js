@@ -20,13 +20,14 @@ const myLogger = expressWinston.logger({
       maxsize: 5242880,
       maxFiles: 10,
     }),
-    // new transports.MongoDB({
-    //   db,
-    //   collection: 'logdb',
-    //   level: 'debug',
-    //   tryReconnect: true,
-    //   options: { useUnifiedTopology: true },
-    // }),
+    new transports.MongoDB({
+      db,
+      collection: 'logdb',
+      level: 'debug',
+      tryReconnect: true,
+      options: { useUnifiedTopology: true },
+      metaKey: 'meta',
+    }),
   ],
 });
 
