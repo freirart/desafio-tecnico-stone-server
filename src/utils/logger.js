@@ -24,7 +24,6 @@ const myLogger = expressWinston.logger({
       db,
       collection: 'logdb',
       level: 'debug',
-      tryReconnect: true,
       options: { useUnifiedTopology: true },
       metaKey: 'meta',
     }),
