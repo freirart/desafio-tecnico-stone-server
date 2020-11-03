@@ -8,6 +8,8 @@ const path = require('path');
 expressWinston.requestWhitelist.push('body');
 expressWinston.responseWhitelist.push('body');
 
+const database = process.env.MONGODB_URL || process.env.MONGODB;
+
 const myLogger = expressWinston.logger({
   format: combine(
     json(),
