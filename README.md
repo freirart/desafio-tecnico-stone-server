@@ -16,8 +16,8 @@ A aplicação consiste em um CRUD de Funcionários desenvolvida em NodeJS cujas 
 * <a href="https://github.com/sequelize/sequelize" target="_blank">Sequelize</a>
 
 ### Bancos de dados
-* <a href="" target="_blank">Heroku Postgres</a>
-* <a href="" target="_blank">MongoDB</a>
+* <a href="https://www.heroku.com/postgres" target="_blank">Heroku Postgres</a>
+* <a href="https://www.mongodb.com/" target="_blank">MongoDB</a>
 
 ### Logging e armazenamento de logs
 * <a href="https://github.com/winstonjs/winston" target="_blank">winston</a>
