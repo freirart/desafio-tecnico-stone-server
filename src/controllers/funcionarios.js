@@ -1,4 +1,5 @@
 const Funcionario = require('../models/funcionario');
+const Cargo = require('../models/cargo');
 const { Op } = require('sequelize');
 
 exports.fetchEmployees = (req, res, next) => {
@@ -7,9 +8,13 @@ exports.fetchEmployees = (req, res, next) => {
   const offset = pageNumber * limit;
 
   Funcionario.findAll({
-     attributes: ['id', 'nome', 'cargoId', 'idade'],
-     limit,
-     offset 
+    include: {
+      model: Cargo,
+      attributes: ['id', 'nome']
+    },
+    attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
+    limit,
+    offset,
     })
     .then(listaFuncionarios => res.status(200).json({ listaFuncionarios }))
     .catch(err => {
@@ -62,8 +67,12 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
   if (nome) whereFilter.nome = { [Op.iLike]: `${nome}%` };
 
   Funcionario.findAll({
-     attributes: ['id', 'nome', 'cargoId', 'idade'],
-     where: whereFilter
+    include: {
+      model: Cargo,
+      attributes: ['id', 'nome']
+    },
+    attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
+    where: whereFilter
    })
     .then(funcionarios => res.status(200).json({ funcionarios }))
     .catch(err => {

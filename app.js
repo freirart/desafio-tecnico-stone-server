@@ -28,6 +28,7 @@ Cargo.hasMany(Funcionario, {
     allowNull: false
   }
 });
+Funcionario.belongsTo(Cargo);
 
 const port = process.env.PORT || 8080;
 const server = http.createServer(app);
