@@ -3,11 +3,26 @@
 ## Proposta
 Desafio técnico proposto pela <a href="https://www.stone.com.br" target="_blank">Stone</a>: uma Fintech brasileira de meios de pagamentos que atua no mercado desde 2014.
 
-A proposta é construir uma API REST que interaja com uma aplicação Front-End desenvolvida na stack Javascript (escolhi React para fazer).
+A proposta é construir uma API REST que interaja com uma aplicação Front-End desenvolvida na stack Javascript (desenvolvida em React).
 
 A aplicação consiste em um CRUD de Funcionários desenvolvida em NodeJS cujas funções são melhores descritas em suas rotas e na aplicação web.
 
-<a href="https://github.com/freirart/desafio-tecnico-stone-web" target="_blank">Clique aqui para visitar o repositório da aplicação web em React!</a>
+<a href="https://github.com/freirart/desafio-tecnico-stone-web" target="_blank">Clique aqui</a> para visitar o repositório da aplicação web em React!
+
+## Tecnologias
+
+### Arquitetura da aplicação
+* <a href="https://github.com/expressjs/express" target="_blank">ExpressJS</a>
+* <a href="https://github.com/sequelize/sequelize" target="_blank">Sequelize</a>
+
+### Bancos de dados
+* <a href="" target="_blank">Heroku Postgres</a>
+* <a href="" target="_blank">MongoDB</a>
+
+### Logging e armazenamento de logs
+* <a href="https://github.com/winstonjs/winston" target="_blank">winston</a>
+* <a href="https://github.com/bithavoc/express-winston" target="_blank">express-winston</a>
+* <a href="https://github.com/winstonjs/winston-mongodb" target="_blank">winston-mongodb</a>
 
 ## Baixando o código fonte
 
@@ -16,7 +31,7 @@ Para obter o código fonte em sua máquina, execute o seguinte comando:
 ```
 $ git clone https://github.com/freirart/desafio-tecnico-stone-server.git
 ```
-> Rodar o projeto localmente é impossível uma vez que se observa e inexistência de variáveis de ambiente que contêm informações sigilosas tais como as URI's de conexão com o Banco de Dados.
+> Rodar o projeto localmente é impossível uma vez que se observa e inexistência de variáveis de ambiente que contêm informações sigilosas tais como as URI's de conexão com o Banco de Dados. Alternativas para testar a aplicação são descritas logo abaixo.
 
 ## Rotas
 O servidor Back-End está hospedado na <a href="www.heroku.com" target="_blank">Heroku<a/>, logo todas as suas rotas podem ser acessadas partindo do link: <br />
@@ -27,37 +42,37 @@ O servidor Back-End está hospedado na <a href="www.heroku.com" target="_blank">
 #### Obter lista de funcionários
 Como uma boa prática de performance, a lista de funcionários é __separada em páginas__, onde cada página possui 20 funcionários.
 
-A rota para as páginas da lista seguem o seguinte modelo:
+A rota para as páginas da lista segue o seguinte modelo:
 
 `/employee/page/:pageNumber`
 
-Passando __0__ como o número da página, a API retornará os __20 primeiros funcionários__ cadastrados no banco.
+Substituindo `:pageNumber` por __0__, a API retornará os __20 primeiros funcionários__ cadastrados no banco.
 
-#### Obter informações de funcionário pelo seu _ID_
+#### Obter informações de funcionário pelo seu _Id_
 
 `/employee/:employeeId`
 
-Substitua `:employeeId` pelo _ID_ de seu funcionário e _voilà_!
+Substitua `:employeeId` pelo _Id_ de seu funcionário e _voilà_!
 
 #### Obter lista de cargos
 
 `/cargos`
 
-Devolve a lista de cargos com seus respectivos _ID's_.
+Devolve a lista de cargos com seus respectivos _Id's_.
 
 #### Obter lista filtrada de funcionários
 
 `/employee?cargoId=<CargoID>&filtroIdade=<FiltroIdade>&nome=<InicioDoNome>`
 
-Nesta rota, pode-se filtrar funcionários pelo _ID_ de seu cargo, pelo filtro de sua idade e/ou pelo início de seu nome.
+Nesta rota, pode-se filtrar funcionários pelo _Id_ de seu cargo, pelo filtro de sua idade e/ou pelo início de seu nome.
 
-* O Filtro de idade funciona da seguinte maneira:
+* A filtragem pelo cargo é baseada em seu _Id_ (obtém-se o _Id_ do cargo pela rota acima).
+* O filtro de idade é dado pelos números de 1 a 4 que seguem a relação abaixo:
 
     1- Funcionários abaixo de 20 anos; <br/>
     2- Funcionários entre 20 e 30 anos; <br/>
     3- Funcionários entre 31 e 40 anos; <br/>
     4- Funcionários acima de 40 anos;
-* A filtragem pelo cargo é baseada em seu _ID_ (obtém-se o _ID_ do cargo pela rota acima).
 * O filtro pelo nome é _insensitive case_ (indifere maiusculas e minúsculas) e busca por algo que __comece__ com o que foi entrado. Isto é, caso "art" seja o nome procurado, o funcionário de nome "Artur Freire dos Santos" passará pelo filtro.
 
 > OBS:. Os filtros podem ser combinados ou não.
@@ -70,7 +85,7 @@ Nesta rota, pode-se filtrar funcionários pelo _ID_ de seu cargo, pelo filtro de
 
 Cria um cargo no banco de dados que poderá ser utilizado para atrelar funcionários a este.
 
-__Deve-se passar um objeto com a propriedade__ `nome`, como sugere o JSON abaixo:
+O corpo da requisição __deve__ conter o campo `nome`, como mostra o JSON abaixo:
 
 ```
 {
@@ -84,7 +99,7 @@ __Deve-se passar um objeto com a propriedade__ `nome`, como sugere o JSON abaixo
 
 Cria um funcionário no banco de dados.
 
-__Deve-se passar um objeto com as propriedades__ `nome`, `idade` e `cargoId`, como sugere o JSON abaixo:
+O corpo da requisição __deve__ conter os campos `nome`, `idade` e `cargoId`, como sugere o JSON abaixo:
 
 ```
 {
@@ -100,7 +115,7 @@ __Deve-se passar um objeto com as propriedades__ `nome`, `idade` e `cargoId`, co
 
 Altera informações as informações do funcionário no banco de dados.
 
-No corpo da requisição __deve__ conter os campos `id`, `nome`, `idade` e `cargoId`, como ilustra o JSON abaixo: 
+O corpo da requisição __deve__ conter os campos `id`, `nome`, `idade` e `cargoId`, como ilustra o JSON abaixo: 
 
 ```
 {
@@ -112,3 +127,11 @@ No corpo da requisição __deve__ conter os campos `id`, `nome`, `idade` e `carg
 ```
 ### Rota DELETE
 #### Deletar um cargo
+`/cargos/:cargoId`
+
+Substitua `:cargoId` pelo _Id_ do cargo que deseja deletar e _voilà_!
+
+#### Deletar um funcionário
+`/employee/:employeeId`
+
+Substitua `:employeeId` pelo _Id_ do cargo que deseja deletar e _voilà_!
