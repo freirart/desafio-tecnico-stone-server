@@ -22,7 +22,7 @@ exports.fetchSingleEmployee = (req, res, next) => {
   const { employeeId } = req.params;
 
   Funcionario.findByPk(employeeId)
-    .then(funcionario => res.json({ funcionario }))
+    .then(funcionario => res.status(200).json({ funcionario }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." });
@@ -76,7 +76,7 @@ exports.addEmployee = (req, res, next) => {
   const { nome, idade, cargoId } = req.body;
 
   Funcionario.create({ nome, idade, cargoId })
-    .then(() => res.status(200).json({ message: 'Success!' }))
+    .then(() => res.status(201).json({ message: 'Success!' }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't add employee." });
@@ -93,10 +93,10 @@ exports.updateEmployee = (req, res, next) => {
       funcionario.cargoId = cargoId;
       return funcionario.save();
     })
-    .then(() => res.status(201).json({ message: 'Success! Employee info updated.' }))
+    .then(() => res.status(200).json({ message: 'Success! Employee info updated.' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "PUT request failed." });
+      res.status(304).json({ error: "PUT request failed." });
     });
 }
 
@@ -105,9 +105,9 @@ exports.deleteEmployee = (req, res, next) => {
 
   Funcionario.findByPk(employeeId)
     .then(funcionario => funcionario.destroy())
-    .then(() => res.status(201).json({ message: 'Success! Employee removed from database.' }))
+    .then(() => res.status(200).json({ message: 'Success! Employee removed from database.' }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "DELETE request failed." });
+      res.status(304).json({ error: "DELETE request failed." });
     });
 }
