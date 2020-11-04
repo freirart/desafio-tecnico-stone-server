@@ -1,4 +1,7 @@
-# REST API - Crud de Funcionários
+<h1 align="center">
+	REST API - Crud de Funcionários<br/>
+	<img src="https://raw.githubusercontent.com/freirart/desafio-tecnico-stone-server/master/readme-image.png" width="300" />
+</h1>
 
 ## Proposta
 Desafio técnico proposto pela <a href="https://www.stone.com.br" target="_blank">Stone</a>: uma Fintech brasileira de meios de pagamentos que atua no mercado desde 2014.
