@@ -21,11 +21,11 @@ exports.createOne = (req, res, next) => {
 }
 
 exports.deleteById = (req, res, next) => {
-  const { id } = req.params;
+  const { idCargo } = req.params;
 
-  Cargo.findByPk(id)
+  Cargo.findByPk(idCargo)
     .then(cargo => cargo.destroy())
-    .then(() => res.status(201).json({ message: 'Success! Cargo removed from database.' }))
+    .then(() => res.status(200).json({ message: 'Success! Cargo removed from database.' }))
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: 'DELETE request failed.' });
