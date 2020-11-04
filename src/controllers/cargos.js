@@ -31,3 +31,18 @@ exports.deleteById = (req, res, next) => {
       res.status(500).json({ error: 'DELETE request failed.' });
     });
 }
+
+exports.updateCargo = (req, res, next) => {
+  const { id, nome } = req.body;
+  
+  Cargo.findByPk(id)
+    .then(cargo => {
+      cargo.nome = nome;
+      return cargo.save();
+    })
+    .then(() => res.status(200).json({ message: 'Success! Cargo updated.' }))
+    .catch(err => {
+      console.log(err);
+      res.status(304).json({ error: "PUT request failed." });
+    });
+}
