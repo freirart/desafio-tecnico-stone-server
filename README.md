@@ -108,12 +108,12 @@ O corpo da requisição __deve__ conter os campos `nome`, `idade` e `cargoId`, c
   "cargoId": 1
 }
 ```
-### Rota PUT
+### Rotas PUT
 #### Atualizar um funcionário
 
 `/employee/edit`
 
-Altera informações as informações do funcionário no banco de dados.
+Altera informações do funcionário no banco de dados.
 
 O corpo da requisição __deve__ conter os campos `id`, `nome`, `idade` e `cargoId`, como ilustra o JSON abaixo: 
 
@@ -125,7 +125,20 @@ O corpo da requisição __deve__ conter os campos `id`, `nome`, `idade` e `cargo
 	"cargoId": 1
 }
 ```
-### Rota DELETE
+#### Atualizar um cargo
+`/cargos/edit`
+
+Altera informações do cargo no banco de dados.
+
+O corpo da requisição __deve__ conter os campos `id` e `nome`, como ilustra o JSON abaixo:
+
+```
+{
+	"id": 1,
+	"nome": "Desenvolvedor Fullstack"
+}
+```
+### Rotas DELETE
 #### Deletar um cargo
 `/cargos/:cargoId`
 
