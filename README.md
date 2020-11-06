@@ -143,11 +143,11 @@ O corpo da requisição __deve__ conter os campos `id` e `nome`, como ilustra o 
 ```
 ### Rotas DELETE
 #### Deletar um cargo
-`/cargos/:cargoId`
+`/cargos/delete/:cargoId`
 
 Substitua `:cargoId` pelo _Id_ do cargo que deseja deletar e _voilà_!
 
 #### Deletar um funcionário
-`/employee/:employeeId`
+`/employee/delete/:employeeId`
 
 Substitua `:employeeId` pelo _Id_ do cargo que deseja deletar e _voilà_!
