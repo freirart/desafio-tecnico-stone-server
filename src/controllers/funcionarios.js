@@ -27,7 +27,13 @@ exports.fetchEmployees = (req, res, next) => {
 exports.fetchSingleEmployee = (req, res, next) => {
   const { employeeId } = req.params;
 
-  Funcionario.findByPk(employeeId)
+  Funcionario.findByPk(employeeId, {
+    include: {
+      model: Cargo,
+      attributes: ['id', 'nome']
+    },
+    attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
+  })
     .then(funcionario => res.status(200).json({ funcionario }))
     .catch(err => {
       console.log(err);
