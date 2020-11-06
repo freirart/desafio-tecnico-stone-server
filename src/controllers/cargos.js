@@ -1,11 +1,14 @@
 const Cargo = require('../models/cargo');
 
 exports.fetchAll = (req, res, next) => {
-  Cargo.findAll({ attributes: ['id', 'nome'] })
+  Cargo.findAll({ 
+    attributes: ['id', 'nome'],
+    order: [ ['nome'] ],
+   })
     .then(cargos => res.status(200).json({ cargos }))
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "Couldn't bring data." });
+      res.status(500).json({ error: "Couldn't bring any data." });
     });
 }
 
