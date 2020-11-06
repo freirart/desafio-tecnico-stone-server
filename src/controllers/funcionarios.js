@@ -38,7 +38,6 @@ exports.fetchSingleEmployee = (req, res, next) => {
     attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
   })
     .then(funcionario => {
-      if (!funcionario.length) return res.status(204).json({ error: "Couldn't bring any data." });
       res.status(200).json({ funcionario });
     })
     .catch(err => {
