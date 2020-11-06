@@ -17,7 +17,10 @@ exports.fetchEmployees = (req, res, next) => {
       offset,
       order: [ ['id'] ]
     })
-    .then(listaFuncionarios => res.status(200).json({ listaFuncionarios }))
+    .then(listaFuncionarios => {
+      if (!listaFuncionarios.length) throw new Error("Couldn't bring any data!");
+      res.status(200).json({ listaFuncionarios });
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." });
@@ -34,7 +37,10 @@ exports.fetchSingleEmployee = (req, res, next) => {
     },
     attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
   })
-    .then(funcionario => res.status(200).json({ funcionario }))
+    .then(funcionario => {
+      if (!listaFuncionarios.length) throw new Error("Couldn't bring any data!");
+      res.status(200).json({ funcionario });
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." });
@@ -82,7 +88,10 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
     where: whereFilter,
     order: [ ['id'] ]
    })
-    .then(funcionarios => res.status(200).json({ funcionarios }))
+    .then(funcionarios => {
+      if (!listaFuncionarios.length) throw new Error("Couldn't bring any data!");
+      res.status(200).json({ funcionarios });
+    })
     .catch(err => {
       console.log(err);
       res.status(500).json({ error: "Couldn't bring any data." })
