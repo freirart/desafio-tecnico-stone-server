@@ -4,11 +4,10 @@
 </h1>
 
 ## Proposta
-Desafio técnico proposto pela <a href="https://www.stone.com.br" target="_blank">Stone</a>: uma Fintech brasileira de meios de pagamentos que atua no mercado desde 2014.
+Desafio técnico proposto pela <a href="https://www.stone.com.br" target="_blank">Stone</a> _- Fintech brasileira de meios de pagamentos que atua no mercado desde 2014 -_
+cuja proposta era construir uma API REST que interagisse com um client Front-End desenvolvido na stack Javascript.
 
-A proposta é construir uma API REST que interaja com uma aplicação Front-End desenvolvida na stack Javascript (desenvolvida em React).
-
-A aplicação consiste em um CRUD de Funcionários desenvolvida em NodeJS cujas funções são melhores descritas em suas rotas e na aplicação web.
+A aplicação consiste em um CRUD de Funcionários desenvolvido em NodeJS e ReactJS.
 
 <a href="https://github.com/freirart/desafio-tecnico-stone-web" target="_blank">Clique aqui</a> para visitar o repositório da aplicação web em React!
 
@@ -28,7 +27,6 @@ A aplicação consiste em um CRUD de Funcionários desenvolvida em NodeJS cujas 
 * <a href="https://github.com/winstonjs/winston-mongodb" target="_blank">winston-mongodb</a>
 
 ## Baixando o código fonte
-
 Para obter o código fonte em sua máquina, execute o seguinte comando:
 
 ```
@@ -143,11 +141,14 @@ O corpo da requisição __deve__ conter os campos `id` e `nome`, como ilustra o 
 ```
 ### Rotas DELETE
 #### Deletar um cargo
-`/cargos/:cargoId`
+`/cargos/delete/:cargoId`
 
 Substitua `:cargoId` pelo _Id_ do cargo que deseja deletar e _voilà_!
 
 #### Deletar um funcionário
-`/employee/:employeeId`
+`/employee/delete/:employeeId`
 
 Substitua `:employeeId` pelo _Id_ do cargo que deseja deletar e _voilà_!
+
+## Licença
+Projeto desenvolvido sob licença do MIT.
