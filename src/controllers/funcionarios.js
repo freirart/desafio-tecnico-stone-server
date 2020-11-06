@@ -8,13 +8,14 @@ exports.fetchEmployees = (req, res, next) => {
   const offset = pageNumber * limit;
 
   Funcionario.findAll({
-    include: {
-      model: Cargo,
-      attributes: ['id', 'nome']
-    },
-    attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
-    limit,
-    offset,
+      include: {
+        model: Cargo,
+        attributes: ['id', 'nome']
+      },
+      attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
+      limit,
+      offset,
+      order: [ ['id'] ]
     })
     .then(listaFuncionarios => res.status(200).json({ listaFuncionarios }))
     .catch(err => {
@@ -72,7 +73,8 @@ exports.fetchEmployeesByFilter = (req, res, next) => {
       attributes: ['id', 'nome']
     },
     attributes: { exclude: ['createdAt', 'updatedAt', 'cargoId'] },
-    where: whereFilter
+    where: whereFilter,
+    order: [ ['id'] ]
    })
     .then(funcionarios => res.status(200).json({ funcionarios }))
     .catch(err => {
