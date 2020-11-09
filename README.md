@@ -7,7 +7,7 @@
 Desafio técnico proposto pela <a href="https://www.stone.com.br" target="_blank">Stone</a> _- Fintech brasileira de meios de pagamentos que atua no mercado desde 2014 -_
 cuja proposta era construir um client Front-End desenvolvido na stack Javascript que interagisse com uma API REST.
 
-A aplicação deste repositório consiste em uma __API REST__ desenvolvida em __NodeJS__ que utiliza dos bancos __Postgres__ - _para armazenar e relacionar registros de funcionários e cargos_- e __MongoDB__ -_para armazenamento de logs e requisições/respostas_.
+A aplicação deste repositório consiste em uma __API REST__ desenvolvida em __NodeJS__ que utiliza dos bancos __Postgres__ - _para armazenar e relacionar registros de funcionários e cargos_- e __MongoDB__ - _para armazenamento de logs e requisições/respostas_.
 
 <a href="https://github.com/freirart/desafio-tecnico-stone-web" target="_blank">Clique aqui</a> para visitar o repositório da aplicação web em React!
 
